@@ -6,15 +6,13 @@
     <tr>
       <th>id</th>
       <th>title</th>
-      <th>author id</th>
+      <th>author name</th>
     </tr>
     </thead>
     <tbody>
       <tr *ngFor="let article of articles">
         <th>{{article.id}}</th>
-        <a routerLink="/articles/{{article.id}}">
-          <th>{{article.title}}</th>
-        </a>
+        <th><button (click)="article_detail(article.id)">{{article.title}}</button></th>
         <th>{{getUsername(article.author_id)}}</th>
       </tr>
     </tbody>

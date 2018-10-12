@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { AppService } from '../app.service';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -10,14 +11,15 @@ import { AuthService } from '../auth.service';
 })
 export class CreateComponent implements OnInit {
 
-  author_id = this.authservice.userId;
+  author_id = this.authservice.current_user.id;
   title = '';
   content = '';
 
   constructor(
     private location: Location,
     private appservice: AppService,
-    private authservice: AuthService
+    private authservice: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -25,21 +27,22 @@ export class CreateComponent implements OnInit {
   }
 
   back(): void {
-    this.location.back();
+    this.router.navigate(['articles']);
   }
 
   confirm(): void {
     this.title = (<HTMLInputElement>document.getElementById('article-title-input')).value;
     this.content = (<HTMLInputElement>document.getElementById('article-content-input')).value;
-    if (this.title === '' && this.content === '') { alert('fill in the blank'); return; }
-    this.appservice.addArticle(this.author_id, this.title, this.content).then(() => this.back());
+    if (this.title === '' && this.content === '') { return; }
+    this.appservice.addArticle(this.author_id, this.title, this.content)
+        .then(result => this.router.navigate(['articles/' + result.id]));
   }
 
   inputmode(): void {
     this.title = (<HTMLInputElement>document.getElementById('article-title-input')).value;
     this.content = (<HTMLInputElement>document.getElementById('article-content-input')).value;
 
-    document.getElementById('article-author').hidden = true;
+    document.getElementById('article-author-id').hidden = true;
     document.getElementById('article-title-input').hidden = false;
     document.getElementById('article-title').hidden = true;
     document.getElementById('article-title-input').innerText = this.title;
@@ -52,8 +55,8 @@ export class CreateComponent implements OnInit {
     this.title = (<HTMLInputElement>document.getElementById('article-title-input')).value;
     this.content = (<HTMLInputElement>document.getElementById('article-content-input')).value;
 
-    document.getElementById('article-author').hidden = false;
-    document.getElementById('article-author-id').innerText = this.author_id.toString();
+    document.getElementById('article-author-id').hidden = false;
+    document.getElementById('article-author').innerText = this.author_id.toString();
     document.getElementById('article-title-input').hidden = true;
     document.getElementById('article-title').hidden = false;
     document.getElementById('article-title').innerText = this.title;

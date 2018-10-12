@@ -32,6 +32,11 @@ export class AppService {
     return this.http.get(this.commentsUrl).toPromise().catch(this.handleError);
   }
 
+  getCommentbyid(id: number): Promise<Comment> {
+    const url = this.commentsUrl + '/' + id;
+    return this.http.get(url).toPromise().catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
@@ -45,7 +50,7 @@ export class AppService {
       .catch(this.handleError);
   }
 
-  addComment(article_id: number, author_id: number, content: string): Promise<Article> {
+  addComment(article_id: number, author_id: number, content: string): Promise<Comment> {
     return this.http
       .post<Comment>(this.commentsUrl, {article_id: article_id, author_id: author_id, content: content}, httpOptions)
       .toPromise()
@@ -54,6 +59,7 @@ export class AppService {
   }
 
   updateArticle(article: Article): Promise<Article> {
+      const url = this.articlesUrl + '/' + article.id;
     return this.http.put(this.articlesUrl, article, httpOptions).toPromise()
       .catch(this.handleError);
   }

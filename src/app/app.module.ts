@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-// Imports for loading & configuring the in-memory web api 
+// Imports for loading & configuring the in-memory web api
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
@@ -17,6 +17,7 @@ import { CreateComponent } from './create/create.component';
 import { AuthService } from './auth.service';
 import { AppService } from './app.service';
 import { DetailComponent } from './detail/detail.component';
+import { ArticleEditComponent } from './article-edit/article-edit.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DetailComponent } from './detail/detail.component';
     SignInComponent,
     ArticlesComponent,
     CreateComponent,
-    DetailComponent
+    DetailComponent,
+    ArticleEditComponent
   ],
   imports: [
     BrowserModule,

@@ -32,11 +32,15 @@ export class DetailComponent implements OnInit {
   }
 
   setting(): void {
-    this.user_id = this.authservice.userId;
+    this.user_id = this.authservice.current_user.id;
 
-    document.getElementById('article-author-id').innerText = this.article.author_id.toString();
+    document.getElementById('article-author').innerText = this.authservice.getUserbyId(this.article.author_id).name;
     document.getElementById('article-title').innerText = this.article.title;
     document.getElementById('article-content').innerText = this.article.content;
+  }
+
+  getUserNamebyId(id: number) {
+      return this.authservice.getUserbyId(id).name;
   }
 
   getArticle(): void {
@@ -50,22 +54,29 @@ export class DetailComponent implements OnInit {
 
   confirm_comment(): void {
     this.comment = (<HTMLInputElement>document.getElementById('new-comment-content-input')).value;
+    if (this.comment === '') { return; }
     (<HTMLInputElement>document.getElementById('new-comment-content-input')).value = '';
-    this.appservice.addComment(this.id, this.user_id, this.comment);
+    this.appservice.addComment(this.id, this.user_id, this.comment).then(c => this.comments.push(c));
   }
 
   delete_comment(id: number): void {
     this.appservice.deleteComment(id);
+    this.comments = this.comments.filter(c => c.id !== id);
   }
 
   edit_comment(comment: Comment): void {
     const new_content = prompt('Enter new comment');
+    if (new_content === null) { return; }
     comment.content = new_content;
     this.appservice.updateComment(comment);
   }
 
   delete_article(): void {
     this.appservice.deleteArticle(this.id).then(() => this.getback());
+  }
+
+  edit_article(): void {
+    this.router.navigate([this.router.url + '/edit']);
   }
 
   getback(): void {

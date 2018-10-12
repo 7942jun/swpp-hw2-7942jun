@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from './auth.service'
+import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,7 +20,7 @@ export class AppComponent {
 
   logout(): void {
     this.authservice.logout();
-    this.login =false;
+    this.login = false;
     this.router.navigate(['/sign_in']);
   }
 }

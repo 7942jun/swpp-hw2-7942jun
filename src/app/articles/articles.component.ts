@@ -24,6 +24,10 @@ export class ArticlesComponent implements OnInit {
     this.getArticles();
   }
 
+  article_detail(id: number) {
+      this.router.navigate(['/articles/' + id]);
+  }
+
   getArticles(): void {
     this.appservice.getArticle().then(articles => this.articles = articles);
   }
@@ -33,6 +37,6 @@ export class ArticlesComponent implements OnInit {
   }
 
   getUsername(id: number): string {
-    return this.authservice.getUserNamebyId(id).name;
+    return this.authservice.getUserbyId(id).name;
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { User } from '../User';
 import { AppComponent } from '../app.component';
 
 @Component({
@@ -25,24 +24,20 @@ export class SignInComponent implements OnInit {
   }
 
   private doLogin() {
-    if (this.authservice.isLogin) {
+    if (this.authservice.current_user.signed_in) {
       this.app.login = true;
       this.router.navigate(['/articles']);
     }
   }
 
   sign_in() {
-    return this.authservice.checkId(this.email, this.password).then(res => {
-      if (res) {
-        this.authservice.login((<User>res).id);
-        this.doLogin();
-      } else {
-        alert('Email or password is wrong');
-      }
-    });
-  }
-
-  logout() {
-    this.authservice.logout();
+      return this.authservice.checkId(this.email, this.password).then(res => {
+          if (res) {
+              this.authservice.Sign(true);
+              this.doLogin();
+          } else {
+              alert('Email or password is wrong');
+          }
+      });
   }
 }

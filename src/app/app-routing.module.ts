@@ -5,13 +5,15 @@ import { ArticlesComponent } from './articles/articles.component';
 import { CreateComponent } from './create/create.component';
 import { DetailComponent } from './detail/detail.component';
 import { AuthGuard } from './auth.guard';
+import { ArticleEditComponent } from './article-edit/article-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign_in', pathMatch: 'full'},
   { path: 'sign_in', component: SignInComponent },
   { path: 'articles', canActivate: [AuthGuard], component: ArticlesComponent},
   { path: 'articles/create', canActivate: [AuthGuard], component: CreateComponent },
-  { path: 'articles/:id', canActivate: [AuthGuard], component: DetailComponent}
+  { path: 'articles/:id', canActivate: [AuthGuard], component: DetailComponent},
+  { path: 'articles/:id/edit', canActivate: [AuthGuard], component: ArticleEditComponent }
 ]
 
 @NgModule({

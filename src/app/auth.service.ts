@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
   isLogin: boolean;
-  userId: number;
+  current_user: User;
 
   users: User[];
   usersUrl = 'api/user';
@@ -16,30 +16,38 @@ export class AuthService {
     private http: HttpClient,
   ) { }
 
+  getUser(id: number) {
+      const url = this.usersUrl + '/' + id;
+      return this.http.get(url).toPromise();
+  }
+
   getUsers() {
     return this.http.get(this.usersUrl).toPromise().catch(this.handleError)
       .then(users => this.users = users);
   }
 
-  getUserNamebyId(id: number): User {
+  getUserbyId(id: number): User {
     const url = this.usersUrl + '/' + id;
     return this.users.find( user => user.id === id);
+  }
+
+  Sign(islogin: boolean) {
+    const url = 'api/user/' + this.current_user.id;
+    this.current_user.signed_in = islogin;
+    this.isLogin = islogin;
+    return this.http.put(url, this.current_user).toPromise();
   }
 
   checkId(email: string, password: string): Promise<User> {
     return this.getUsers()
       .then(user => Promise.resolve(this.users.find(
         _user => _user.email === email && _user.password === password
-      )));
-  }
-
-  login(id: number): void {
-    this.isLogin = true;
-    this.userId = id;
+      )))
+        .then(res => this.current_user = res);
   }
 
   logout(): void {
-    this.isLogin = false;
+    this.Sign(false);
   }
 
   private handleError(error: any): Promise<any> {
