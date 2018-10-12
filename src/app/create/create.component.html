@@ -1,25 +1,23 @@
 <body>
-  <div>
+  <h3>Create Article</h3>
     <table>
-      <h3>Create Article</h3>
       <tbody>
-        <tr id="article-author-id" hidden="true">
+        <tr id="article-author-id">
           <th>author</th>
           <td><h3 id="article-author"></h3></td>
         </tr>
         <tr>
           <th scope="row">Title</th>
-          <td><textarea cols="40" rows="2" id="article-title-input"></textarea></td>
-          <td><h3 id="article-title"></h3></td>
+          <td id="title"><h3 id="article-title"></h3></td>
+          <td id="title-input"><textarea cols="80" rows="2" id="article-title-input"></textarea></td>
         </tr>
         <tr>
           <th scope="row">Content</th>
-          <td><textarea cols="80" rows="16" id="article-content-input"></textarea></td>
-          <td><h3 id="article-content"></h3></td>
+          <td id="content"><h3 id="article-content"></h3></td>
+          <td id="content-input"><textarea cols="80" rows="16" id="article-content-input"></textarea></td>
         </tr>
       </tbody>
     </table>
-  </div>
   <div>
     <button (click)="back()" id="back-create-article-button">back</button>
     <button (click)="confirm()" id="confirm-create-article-button">confirm</button>

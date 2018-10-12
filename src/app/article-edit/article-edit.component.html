@@ -1,28 +1,26 @@
 <body>
+<h3>Edit Article</h3>
+<table>
+  <tbody>
+  <tr id="article-author-id" hidden="true">
+    <th>author</th>
+    <td><h3 id="article-author"></h3></td>
+  </tr>
+  <tr>
+    <th scope="row">Title</th>
+    <td id="title" style="display: none"><h3 id="article-title"></h3></td>
+    <td id="title-input"><textarea cols="80" rows="2" id="article-title-input"></textarea></td>
+  </tr>
+  <tr>
+    <th scope="row">Content</th>
+    <td id="content" style="display: none"><h3 id="article-content"></h3></td>
+    <td id="content-input"><textarea cols="80" rows="16" id="article-content-input"></textarea></td>
+  </tr>
+  </tbody>
+</table>
 <div>
-  <table>
-    <h3>Edit Article</h3>
-    <tbody>
-    <tr id="article-author-id" hidden="true">
-      <th scope="row">author</th>
-      <td><h4 id="article-author"></h4></td>
-    </tr>
-    <tr>
-      <th scope="row">Title</th>
-      <td><textarea cols="40" rows="1" id="article-title-input"></textarea></td>
-      <td><h4 id="article-title"></h4></td>
-    </tr>
-    <tr>
-      <th scope="row">Content</th>
-      <td><textarea cols="80" rows="16" id="article-content-input"></textarea></td>
-      <td><h4 id="article-content"></h4></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-<div>
-  <button (click)="back()" id="back-edit-article-button">back</button>
-  <button (click)="confirm()" id="confirm-edit-article-button">confirm</button>
+  <button (click)="back()" id="back-create-article-button">back</button>
+  <button (click)="confirm()" id="confirm-create-article-button">confirm</button>
   <button (click)="previewMode()" id="preview-tab-button">preview</button>
   <button (click)="inputmode()" id="write-tab-button">write</button>
 </div>

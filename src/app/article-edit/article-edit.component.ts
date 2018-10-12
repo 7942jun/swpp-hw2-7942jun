@@ -68,12 +68,12 @@ export class ArticleEditComponent implements OnInit {
         this.title = (<HTMLInputElement>document.getElementById('article-title-input')).value;
         this.content = (<HTMLInputElement>document.getElementById('article-content-input')).value;
 
-        document.getElementById('article-author').hidden = true;
-        document.getElementById('article-title-input').hidden = false;
-        document.getElementById('article-title').hidden = true;
+        document.getElementById('article-author-id').hidden = true;
+        document.getElementById('title-input').style.display = 'block';
+        document.getElementById('title').style.display = 'none';
         document.getElementById('article-title-input').innerText = this.title;
-        document.getElementById('article-content').hidden = true;
-        document.getElementById('article-content-input').hidden = false;
+        document.getElementById('content').style.display = 'none';
+        document.getElementById('content-input').style.display = 'block';
         document.getElementById('article-content-input').innerText = this.content;
     }
 
@@ -83,11 +83,11 @@ export class ArticleEditComponent implements OnInit {
 
         document.getElementById('article-author-id').hidden = false;
         document.getElementById('article-author').innerText = this.author_id.toString();
-        document.getElementById('article-title-input').hidden = true;
-        document.getElementById('article-title').hidden = false;
+        document.getElementById('title-input').style.display = 'none';
+        document.getElementById('title').style.display = 'block';
         document.getElementById('article-title').innerText = this.title;
-        document.getElementById('article-content-input').hidden = true;
-        document.getElementById('article-content').hidden = false;
+        document.getElementById('content-input').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
         document.getElementById('article-content').innerText = this.content;
     }
 

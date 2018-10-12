@@ -1,0 +1,21 @@
+* {
+    font-family: sans-serif;
+}
+
+.comment {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#confirm-create-comment-button {
+    margin-left: 10px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid;
+    padding: 5px
+}

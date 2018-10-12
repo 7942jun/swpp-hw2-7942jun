@@ -49,7 +49,7 @@ export class DetailComponent implements OnInit {
   }
 
   getComments(): void {
-    this.appservice.getComment().then(comment => this.comments = comment);
+    this.appservice.getComment().then(comment => this.comments = comment.filter(c => c.article_id === this.id));
   }
 
   confirm_comment(): void {

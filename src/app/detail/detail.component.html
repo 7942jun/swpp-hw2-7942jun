@@ -2,7 +2,7 @@
 <div>
   <h3>Article Detail</h3>
   <table>
-    <tbody>
+    <tbody >
     <tr>
       <th scope="row">Author</th>
       <td><h4 id="article-author"></h4></td>
@@ -18,7 +18,7 @@
     </tbody>
   </table>
 </div>
-<div>
+<div class="comment">
   <textarea cols="40" rows="1" type="text" id="new-comment-content-input"></textarea>
   <button id="confirm-create-comment-button" (click)="confirm_comment()">comment</button>
 </div>
@@ -31,11 +31,13 @@
     </tr>
     </thead>
     <tbody *ngFor="let comment of comments">
-      <tr *ngIf="id === comment.article_id">
+      <tr>
         <th>{{getUserNamebyId(comment.author_id)}}</th>
         <th>{{comment.content}}</th>
+        <span class="comment-buttons">
         <button *ngIf="comment.author_id == user_id" id="edit-comment-button" (click)="edit_comment(comment)">edit</button>
         <button *ngIf="comment.author_id == user_id" id="delete-comment-button" (click)="delete_comment(comment.id)">delete</button>
+        </span>
       </tr>
     </tbody>
   </table>
