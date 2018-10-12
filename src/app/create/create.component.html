@@ -1,0 +1,29 @@
+<body>
+  <div>
+    <table>
+      <h3>Create Article</h3>
+      <tbody>
+        <tr id="article-author">
+          <th scope="row">author</th>
+          <td><h4 id="article-author-id"></h4></td>
+        </tr>
+        <tr>
+          <th scope="row">Title</th>
+          <td><input type="text" id="article-title-input"></td>
+          <td><h4 id="article-title"></h4></td>
+        </tr>
+        <tr>
+          <th scope="row">Content</th>
+          <td><textarea cols="40" rows="8" id="article-content-input"></textarea></td>
+          <td><h4 id="article-content"></h4></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <button (click)="back()">back</button>
+    <button (click)="confirm()">confirm</button>
+    <button (click)="previewMode()">preview</button>
+    <button (click)="inputmode()">write</button>
+  </div>
+</body>

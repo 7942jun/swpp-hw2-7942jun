@@ -1,0 +1,48 @@
+<body>
+<div>
+  <h3>Article Detail</h3>
+  <table>
+    <tbody>
+    <tr id="article-author">
+      <th scope="row">author</th>
+      <td><h4 id="article-author-id"></h4></td>
+    </tr>
+    <tr>
+      <th scope="row">Title</th>
+      <td><h4 id="article-title"></h4></td>
+    </tr>
+    <tr>
+      <th scope="row">Content</th>
+      <td><h4 id="article-content"></h4></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <input type="text" id="new-comment-content-input">
+  <button id="confirm-create-comment-button" (click)="confirm_comment()">comment</button>
+</div>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th>author id</th>
+      <th>content</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let comment of comments">
+      <tr *ngIf="id === comment.article_id">
+        <th>{{comment.author_id}}</th>
+        <th>{{comment.content}}</th>
+        <button *ngIf="comment.author_id == user_id" id="edit-comment-button" (click)="edit_comment(comment)">edit</button>
+        <button *ngIf="comment.author_id == user_id" id="delete-comment-button" (click)="delete_comment(comment.id)">delete</button>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <button *ngIf="article.author_id == user_id" id="edit-article-button">edit</button>
+  <button *ngIf="article.author_id == user_id" id="delete-article-button" (click)="delete_article()">delete</button>
+  <button id="back-detail-article-button" (click)="getback()">back</button>
+</div>
+</body>
